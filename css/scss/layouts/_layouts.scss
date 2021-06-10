@@ -1,0 +1,19 @@
+/** CSS HEADER / FOOTER */
+/** 
+HEADER
+*/
+.header{
+    margin-top: 1em;
+    &-logo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &-title{
+            color: $color_primary_one;
+        }
+    }
+}
+
+
+

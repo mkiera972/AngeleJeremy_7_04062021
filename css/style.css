@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/**
+** FICHIER DE STYLE DU SITE DE OHMYFOOD
+** @AUTEUR Jérémy ANGELE
+*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Shrikhand:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap");
+body {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  font-family: "DM Sans", sans-serif;
+}
+
+/* Bootstrap 4 text input with search icon */
+.has-search .form-control {
+  padding-right: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+  right: 1px;
+}
+
+.has-search {
+  position: relative;
+}
+
+.main {
+  margin: 1rem 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/** CSS PAGE ACCUEIL */
+/** CSS HEADER / FOOTER */
+/** 
+HEADER
+*/
+.header {
+  margin-top: 1em;
+}
+.header-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-logo-title {
+  color: #D04F4F;
+}
+
+/*# sourceMappingURL=style.css.map */
