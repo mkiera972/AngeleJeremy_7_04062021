@@ -5,8 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>test</title>
         <link rel="icon" href="images/favicon/favicon.ico" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/fontawesome.min.css"/>
     </head>
@@ -21,11 +23,61 @@
             </div>
         </header>
         <div class="form-group has-search">
-            <span class="fa fa-search form-control-feedback"></span>
-            <input id="browser" type="text" class="form-control" placeholder="Search">
+            <span class="fa fa-search form-control-feedback" id="iconSearch"></span>
+            <input id="search" type="text" class="form-control" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+            <!--input id="search"  list="browsers" type="text" class="form-control" placeholder="Search"-->
         </div>
-        <!--datalist id="browsers">
-        </datalist-->
+        <datalist id="browsers">
+            <option value="tata"></option>
+        </datalist>
+        <!-- ROWS https://grimonprezalexis.github.io/GrimonprezAlexis_7_180321/ -->
+        <div class="tags" id="tags">
+        </div>
+        <div class="filters">
+          <div class="input-group input-group-lg input-group-ingredients">
+            <input type="text" id="inputIngredients" class="form-control filters-group filters-group-ingredients" placeholder="Ingrédients" aria-label="Entrer un ingrédient">
+            <div class="dropdown-menu dropdown-ingredients" id="ingredients">
+            </div>
+            <div class="input-group-append">
+              <button type="button" id="btnIngredients" 
+                class="btn btn-outline dropdown-toggle dropdown-toggle-split filters-group filters-group-ingredients"  
+                aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="input-group input-group-lg input-group-appareils">
+            <input type="text" id="inputAppareils" class="form-control filters-group filters-group-appareils" placeholder="Appareils" aria-label="Entrer un appareil">
+            <div class="dropdown-menu dropdown-appareils" id="appareils">
+            </div>
+            <div class="input-group-append">
+              <button type="button" id="btnAppareils" 
+                class="btn btn-outline dropdown-toggle dropdown-toggle-split filters-group filters-group-appareils"  
+                aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="input-group input-group-lg input-group-ustensiles">
+            <input type="text" id="inputUstensiles" class="form-control filters-group filters-group-ustensiles" placeholder="Ustensiles" aria-label="Entrer un ustencil">
+            <div class="dropdown-menu dropdown-ustensiles" id="ustensils">
+            </div>
+            <div class="input-group-append">
+              <button type="button" id="btnUstensiles" 
+                class="btn btn-outline dropdown-toggle dropdown-toggle-split filters-group filters-group-ustensiles"  
+                aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+            </div>
+          </div>
+        </div>    
+        <div class="cards" id="cards">
+        </div>
+        <div class="resultsearch" id="resultsearch">
+          <p class="resultsearch-infos">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc</p>
+        </div>
     </div>
 <script src="js/algo1.js"></script>
 </body>

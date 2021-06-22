@@ -11,30 +11,31 @@ body{
     width: auto;
     margin: 0;
     padding: 0;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* Bootstrap 4 text input with search icon */
-
-.has-search .form-control {
-    padding-right: 2.375rem;
-}
-
-.has-search .form-control-feedback {
-    position: absolute;
-    z-index: 2;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;
-    right: 1px;
-}
-
 .has-search{
     position: relative;
+
+    .form-control {
+        padding-right: 2.375rem;
+    }
+
+    .form-control-feedback {
+        position: absolute;
+        z-index: 2;
+        display: block;
+        width: 2.375rem;
+        height: 2.375rem;
+        line-height: 2.375rem;
+        text-align: center;
+        //pointer-events: none;
+        color: #aaa;
+        right: 1px;
+        cursor: pointer;
+    }
+    
 }
 
 
