@@ -1,0 +1,281 @@
+@charset "UTF-8";
+/**
+** FICHIER DE STYLE DU SITE DE OHMYFOOD
+** @AUTEUR Jérémy ANGELE
+*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Shrikhand:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap");
+body {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Bootstrap 4 text input with search icon */
+.has-search {
+  position: relative;
+}
+.has-search .form-control {
+  padding-right: 2.375rem;
+}
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  color: #aaa;
+  right: 1px;
+  cursor: pointer;
+}
+
+.main {
+  margin: 1rem 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/** CSS PAGE ACCUEIL */
+.tags {
+  margin: 0.5rem 0;
+  flex-wrap: wrap;
+}
+.tags .btn {
+  margin: 0 0.5rem 0.5rem 0;
+}
+.tags .btn-success {
+  border: #68D9A4;
+  background-color: #68D9A4;
+}
+.tags .btn-success:hover {
+  background-color: #36ac75;
+}
+.tags .btn-danger {
+  border: #ED6454;
+  background-color: #ED6454;
+}
+.tags .btn-danger:hover {
+  background-color: #ec3c29;
+}
+
+.filters {
+  margin-bottom: 1rem;
+  display: flex;
+}
+@media only screen and (max-width: 1100px) {
+  .filters {
+    display: block;
+  }
+}
+.filters-group {
+  color: #ffffff;
+  border: none;
+}
+.filters-group-ingredients {
+  background-color: #3282F7;
+}
+.filters-group-ingredients:focus {
+  background-color: #3282F7;
+  color: #ffffff;
+}
+.filters-group-appareils {
+  background-color: #68D9A4;
+}
+.filters-group-appareils:focus {
+  background-color: #68D9A4;
+  color: #ffffff;
+}
+.filters-group-ustensiles {
+  background-color: #ED6454;
+}
+.filters-group-ustensiles:focus {
+  background-color: #ED6454;
+  color: #ffffff;
+}
+.filters-group::placeholder {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+}
+.filters .dropdown-menu {
+  width: 100%;
+  position: absolute;
+  transform: translate3d(0px, 40px, 0px);
+  top: 0px;
+  left: 0px;
+  will-change: transform;
+  border: none;
+}
+@media only screen and (min-width: 1101px) {
+  .filters .dropdown-menu {
+    columns: 3;
+  }
+}
+.filters .dropdown-ingredients {
+  background-color: #3282F7;
+}
+.filters .dropdown-appareils {
+  background-color: #68D9A4;
+}
+.filters .dropdown-ustensiles {
+  background-color: #ED6454;
+}
+.filters .dropdown-item {
+  color: #ffffff;
+}
+@media only screen and (min-width: 1101px) {
+  .filters .dropdown-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.filters .dropdown-item-ingredient:hover, .filters .dropdown-item-ingredient:focus {
+  cursor: pointer;
+  background-color: #32B7F7;
+}
+.filters .dropdown-item-appareil:hover, .filters .dropdown-item-appareil:focus {
+  cursor: pointer;
+  background-color: #36ac75;
+}
+.filters .dropdown-item-ustensil:hover, .filters .dropdown-item-ustensil:focus {
+  cursor: pointer;
+  background-color: #ec3c29;
+}
+.filters .input-group {
+  width: 20%;
+  margin-right: 1rem;
+}
+@media only screen and (max-width: 1100px) {
+  .filters .input-group {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+/* rows */
+div.dropdown-multicol {
+  width: 30em;
+}
+
+div.dropdown-row > a.dropdown-item {
+  display: inline-block;
+  width: 32%;
+}
+
+/* Columns */
+div.dropdown-multicol2 {
+  overflow: scroll;
+  height: 300px;
+  width: 50em;
+}
+div.dropdown-multicol2::-webkit-scrollbar {
+  display: none;
+}
+div.dropdown-multicol2::-ms-overflow-style {
+  display: none;
+}
+div.dropdown-multicol2::-ms-overflow-style {
+  display: none;
+}
+
+div.dropdown-multicol2 > div.dropdown-col {
+  display: inline-block;
+  width: 32%;
+}
+
+/*
+Or just:
+div.dropdown-row>a.dropdown-item{
+  display:inline-block;
+  width: 10em;
+}
+
+(Former may be more convenient for responsive)
+*/
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.cards .card {
+  /*height: 400px;*/
+  margin-bottom: 1rem;
+  background-color: #E7E7E7;
+  border: none;
+}
+@media only screen and (min-width: 1101px) {
+  .cards .card {
+    width: 31%;
+  }
+}
+.cards .card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: none;
+  background-color: #E7E7E7;
+  position: relative;
+}
+.cards .card-header-name {
+  font-size: 18px;
+  margin: 0;
+}
+.cards .card-body {
+  display: flex;
+  justify-content: space-between;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.cards .card-body-ingredients {
+  padding: 0;
+  width: 48%;
+}
+.cards .card-body-ingredients-item {
+  list-style: none;
+  font-size: 14px;
+}
+.cards .card-body-ingredients-name {
+  font-weight: bold;
+}
+.cards .card-body-desc {
+  font-size: 14px;
+  width: 48%;
+}
+
+.resultsearch {
+  padding: 2rem;
+  background-color: #E7E7E7;
+  margin-bottom: 2rem;
+  display: none;
+  border-radius: 5px;
+}
+.resultsearch-infos {
+  margin: 0;
+  font-weight: 700;
+  text-align: center;
+}
+
+/** CSS HEADER / FOOTER */
+/** 
+HEADER
+*/
+.header {
+  margin-top: 1em;
+}
+.header-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-logo-title {
+  color: #D04F4F;
+}
+
+/*# sourceMappingURL=style.css.map */
