@@ -1740,10 +1740,9 @@ class Recipes {
 
         if(as_motCle != ''){
             temp = recipes.filter(function (d) {
-                return d.name.toLowerCase().indexOf(as_motCle) !== -1 
-                || d.ingredients.filter(i => i.ingredient.toLowerCase().includes(as_motCle)).length > 0 
-                || d.description.toLowerCase().indexOf(as_motCle) !== -1;
+                return d.name.toLowerCase().indexOf(as_motCle) !== -1 || d.ingredients.filter(i => i.ingredient.toLowerCase().includes(as_motCle)).length > 0 || d.description.toLowerCase().indexOf(as_motCle) !== -1;
             });
+            
         }else{
             temp = recipes.filter(function (d) {
                 return !as_motCle;
@@ -1833,7 +1832,7 @@ class Recipes {
             cards.removeChild(allCards[key]);
           });
         }
-        
+
         if(this.tmpRecipesFilter.length == 0){
             document.getElementById("resultsearch").style.display = "block";
             return false;
