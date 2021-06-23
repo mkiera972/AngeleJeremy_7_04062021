@@ -1739,9 +1739,15 @@ class Recipes {
         let temp;
 
         if(as_motCle != ''){
-            temp = recipes.filter(function (d) {
-                return d.name.toLowerCase().indexOf(as_motCle) !== -1 || d.ingredients.filter(i => i.ingredient.toLowerCase().includes(as_motCle)).length > 0 || d.description.toLowerCase().indexOf(as_motCle) !== -1;
+            let temp1 = recipes.filter(function (d) {
+                return d.name.toLowerCase().indexOf(as_motCle) !== -1 || d.description.toLowerCase().indexOf(as_motCle) !== -1;
             });
+          	
+            let temp2 = recipes.filter(function (d) {
+                return d.ingredients.filter(i => i.ingredient.toLowerCase().includes(as_motCle)).length > 0;
+            });
+
+            temp = temp1.concat(temp2);
             
         }else{
             temp = recipes.filter(function (d) {
