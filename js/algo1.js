@@ -1742,7 +1742,7 @@ class Recipes {
             recipes.forEach((recipe) => {
                 if(recipe.name.toLowerCase().indexOf(as_motCle) !== -1 || recipe.description.toLowerCase().indexOf(as_motCle) !== -1){
                     temp.push(recipe);
-                }else if(recipe.ingredients.filter(i => i.ingredient.toLowerCase().includes(as_motCle)).length > 0){
+                }else if(JSON.stringify(recipe.ingredients).toLowerCase().indexOf(as_motCle) !== -1){
                     temp.push(recipe);
                 }
             });
