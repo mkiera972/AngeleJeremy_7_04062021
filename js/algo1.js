@@ -1736,30 +1736,25 @@ class Recipes {
     }
 
     filterData(as_motCle){
-        let temp;
+        let temp = new Array();
 
         if(as_motCle != ''){
-            let temp1 = recipes.filter(function (d) {
-                return d.name.toLowerCase().indexOf(as_motCle) !== -1 || d.description.toLowerCase().indexOf(as_motCle) !== -1;
+            recipes.forEach((recipe) => {
+                if(recipe.name.toLowerCase().indexOf(as_motCle) !== -1 || recipe.description.toLowerCase().indexOf(as_motCle) !== -1){
+                    temp.push(recipe);
+                }else if(recipe.ingredients.filter(i => i.ingredient.toLowerCase().includes(as_motCle)).length > 0){
+                    temp.push(recipe);
+                }
             });
-          	
-            let temp2 = recipes.filter(function (d) {
-                return d.ingredients.filter(i => i.ingredient.toLowerCase().includes(as_motCle)).length > 0;
-            });
-
-            temp = temp1.concat(temp2);
             
         }else{
-            temp = recipes.filter(function (d) {
-                return !as_motCle;
-            });
+            temp = recipes;
         }
-
+        //console.log(temp)
         return temp;
     }
 
     genCards(ao_recipe){
-        console.log(ao_recipe)
         const card = document.createElement("div");
         card.classList.add("card");
 
