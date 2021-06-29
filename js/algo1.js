@@ -2134,7 +2134,11 @@ const getRecipes = new Recipes();
 
 var inputSearch = document.getElementById("search");
 inputSearch.addEventListener('input', () => {
-    getRecipes.getData(inputSearch.value.toLowerCase());
+    if(inputSearch.value.trim().length > 2){
+        getRecipes.getData(inputSearch.value.toLowerCase());
+    }else{
+        getRecipes.getData('');
+    }
 });
 
 var iconSearch = document.getElementById("iconSearch");
@@ -2152,14 +2156,17 @@ iconSearch.addEventListener('click', () => {
  ********************/
 var inputGroupIngredients = document.querySelector(".input-group-ingredients");
 var inputIngredients = document.getElementById("inputIngredients");
+var groupBtnIng = document.getElementById("groupBtnIng");
 var btnIngredients = document.getElementById("btnIngredients");
 var dropdownIngredients = document.querySelector(".dropdown-ingredients");
 
 inputIngredients.addEventListener('input', () => {
     displayItemDropdown(inputIngredients.value, dropdownIngredients, inputGroupIngredients, ".dropdown-item-ingredient");
+    f_js_up_down_iconBtn('input',groupBtnIng,dropdownIngredients);
 });
 
 btnIngredients.addEventListener('click', () => {
+    f_js_up_down_iconBtn('click',groupBtnIng,dropdownIngredients);
     displayDropdown(dropdownIngredients,inputGroupIngredients);  
 });
 
@@ -2168,14 +2175,17 @@ btnIngredients.addEventListener('click', () => {
  ********************/
 var inputGroupAppareils = document.querySelector(".input-group-appareils");
 var inputAppareils = document.getElementById("inputAppareils");
+var groupBtnApp = document.getElementById("groupBtnApp");
 var btnAppareils = document.getElementById("btnAppareils");
 var dropdownAppareils = document.querySelector(".dropdown-appareils");
 
 inputAppareils.addEventListener('input', () => {
     displayItemDropdown(inputAppareils.value, dropdownAppareils, inputGroupAppareils, ".dropdown-item-appareil");
+    f_js_up_down_iconBtn('input',groupBtnApp,dropdownAppareils);
 });
 
 btnAppareils.addEventListener('click', () => {
+    f_js_up_down_iconBtn('click',groupBtnApp,dropdownAppareils);
     displayDropdown(dropdownAppareils,inputGroupAppareils);  
 });
 
@@ -2184,13 +2194,26 @@ btnAppareils.addEventListener('click', () => {
  * USTENSILES
  ********************/
  var inputGroupUstensiles = document.querySelector(".input-group-ustensiles");
+ var inputUstensiles = document.getElementById("inputUstensiles");
+ var groupBtnUst = document.getElementById("groupBtnUst");
  var btnUstensiles = document.getElementById("btnUstensiles");
  var dropdownUstensiles = document.querySelector(".dropdown-ustensiles");
  
+ inputUstensiles.addEventListener('input', () => {
+    displayItemDropdown(inputUstensiles.value, dropdownUstensiles, inputGroupUstensiles, ".dropdown-item-ustensil");
+    f_js_up_down_iconBtn('input',groupBtnUst,dropdownUstensiles);
+});
+
  btnUstensiles.addEventListener('click', () => {
+     f_js_up_down_iconBtn('click',groupBtnUst,dropdownUstensiles);
      displayDropdown(dropdownUstensiles,inputGroupUstensiles);  
  });
 
+/**
+ * AFFICHE LE DROPDOWN INGREDIENTS APPAREILS USTENSILS
+ * @param {*} ao_dropdown 
+ * @param {*} ao_inputGroup 
+ */
 function displayDropdown(ao_dropdown,ao_inputGroup){
     var largeur = window.innerWidth;
     if(ao_dropdown.style.display == "block"){
@@ -2202,6 +2225,14 @@ function displayDropdown(ao_dropdown,ao_inputGroup){
     }
 }
 
+/**
+ * AFFICHE LES INGREDIENTS APPAREILS USTENSILS CORRESPONDANT AU RESULTAT
+ * @param {*} as_motCle 
+ * @param {*} ao_dropdown 
+ * @param {*} ao_inputGroup 
+ * @param {*} ao_selector 
+ * 
+ */
 function displayItemDropdown(as_motCle ,ao_dropdown , ao_inputGroup, ao_selector){
     
     const tags = document.querySelectorAll(ao_selector);
@@ -2219,6 +2250,17 @@ function displayItemDropdown(as_motCle ,ao_dropdown , ao_inputGroup, ao_selector
     });
 
 }
+
+function f_js_up_down_iconBtn(event,divBtn,dropdown){
+    let classDivBtn = divBtn.className == 'input-group-append' ? 'input-group-append dropup' : 'input-group-append';
+    if(event == 'click'){
+        divBtn.setAttribute("class", classDivBtn);
+    }else{
+        classDivBtn = dropdown.style.display == 'block' ? 'input-group-append dropup' : 'input-group-append';
+        divBtn.setAttribute("class", classDivBtn);
+    }
+}
+
 
 
 /*************************************
