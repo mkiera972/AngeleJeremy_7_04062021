@@ -2135,7 +2135,11 @@ const getRecipes = new Recipes();
 
 var inputSearch = document.getElementById("search");
 inputSearch.addEventListener('input', () => {
-    getRecipes.getData(inputSearch.value.toLowerCase());
+    if(inputSearch.value.trim().length > 2){
+        getRecipes.getData(inputSearch.value.toLowerCase());
+    }else{
+        getRecipes.getData('');
+    }
 });
 
 var iconSearch = document.getElementById("iconSearch");
