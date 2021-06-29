@@ -203,6 +203,11 @@ div.dropdown-multicol{
             &-name{
                 font-size: 18px;
                 margin: 0;
+                font-weight: 400;
+            }
+
+            &-timer{
+                font-weight: 700;
             }
         }
 
@@ -216,7 +221,7 @@ div.dropdown-multicol{
                 width: 48%;
                 &-item{
                     list-style: none;
-                    font-size: 14px;
+                    font-size: 12px;
                 }
 
                 &-name{
@@ -225,7 +230,7 @@ div.dropdown-multicol{
             }
 
             &-desc{
-                font-size: 14px;
+                font-size: 12px;
                 width: 48%;
             }
         }

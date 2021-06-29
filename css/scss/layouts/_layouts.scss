@@ -11,6 +11,9 @@ HEADER
 
         &-title{
             color: $color_primary_one;
+            @media only screen and (max-width: 1100px){
+                font-size: 2rem;
+            }
         }
     }
 }
