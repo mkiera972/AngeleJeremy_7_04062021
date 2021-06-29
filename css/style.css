@@ -242,8 +242,12 @@ div.dropdown-row>a.dropdown-item{
   width: 48%;
 }
 .cards .card-body-ingredients-item {
+  font-weight: 700;
   list-style: none;
   font-size: 12px;
+}
+.cards .card-body-ingredients-item-quantity {
+  font-weight: 400;
 }
 .cards .card-body-ingredients-name {
   font-weight: bold;

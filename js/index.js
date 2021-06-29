@@ -1801,6 +1801,14 @@ class Recipes {
             cardIngredient.classList.add("card-body-ingredients-item");
             cardIngredient.setAttribute("title", current_ingredient.ingredient);
             cardIngredient.innerText = current_ingredient.ingredient;
+            const spanItemQuantityIngredient = document.createElement("span");
+            spanItemQuantityIngredient.classList.add("card-body-ingredients-item-quantity");
+            let textspanQuantity = current_ingredient.quantity ? " : " + current_ingredient.quantity + " " : "";
+            let textspanUnit = current_ingredient.unit ? current_ingredient.unit : "";
+            let textspandetails = textspanQuantity + textspanUnit;
+
+            spanItemQuantityIngredient.innerText = textspandetails;
+            cardIngredient.appendChild(spanItemQuantityIngredient);
 
             cardIngredients.appendChild(cardIngredient);
         }

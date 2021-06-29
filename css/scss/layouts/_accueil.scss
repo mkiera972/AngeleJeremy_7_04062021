@@ -220,8 +220,12 @@ div.dropdown-multicol{
                 padding: 0;
                 width: 48%;
                 &-item{
+                    font-weight: 700;
                     list-style: none;
                     font-size: 12px;
+                    &-quantity{
+                        font-weight: 400;
+                    }
                 }
 
                 &-name{
