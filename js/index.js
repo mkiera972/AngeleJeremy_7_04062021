@@ -1723,18 +1723,28 @@ const recipes = [
     }
 ];
 
+/********************************************
+ * NOEUD CONTENANT TOUTES LES RECETTES AFFICHEE
+ *******************************************/
 const cards = document.querySelector(".cards");
+
 class Recipes { 
     constructor(){
         this.tmpRecipesFilter;
         this.tmpIngredients = new Array();
         this.tmpAppareils = new Array();
         this.tmpUstencils = new Array();
-        this.allTags = new Array();
+        this.allTagsChoose = new Array();
 
         this.getData();
     }
 
+    /***********************************
+     * FILTRE LE TABLEAU DES RECETTES
+     * RENVOI UN TABLEAU FILTRE
+     * @param {*} as_motCle 
+     * @returns 
+     ***********************************/
     filterData(as_motCle){
         let temp;
 
@@ -1755,6 +1765,10 @@ class Recipes {
         return temp;
     }
 
+    /*******************************************
+     * GENERE LES CARDS CONTENANT LES RECETTES
+     * @param {*} ao_recipe 
+     *******************************************/
     genCards(ao_recipe){
         const card = document.createElement("div");
         card.classList.add("card");
@@ -1828,15 +1842,15 @@ class Recipes {
 
     /*************************************
      *RECUPERE LE TABLEAU FILTRE
-     *SUPPRIME LES ANCIENNES DONNEES
-     *CREE LES RECETTES DANS LE HTML
-     *APPEL LA FONCTION POUR CREER LES FILTRES
+     *SUPPRIME LES ANCIENNES DONNEES DANS LE HTML
+     *CREER LES RECETTES DANS LE HTML
+     *APPEL LA FONCTION POUR ALIMENTER LES FILTRES
      ************************************/
     genNodes(ao_dataFilter){
         this.tmpRecipesFilter = ao_dataFilter;
+
         const allCards = document.querySelectorAll(".card");
         const li_nb_cards = allCards.length;
-        
         if(li_nb_cards > 0){
             allCards.forEach((card, key) => {
             cards.removeChild(allCards[key]);
@@ -1857,6 +1871,10 @@ class Recipes {
         this.genFiltersByType(this.tmpRecipesFilter);
     }
 
+    /**
+     * RECUPERE LES DONNEES
+     * @param {*} as_motCle 
+     */
     getData(as_motCle = ''){
         this.genNodes(this.filterData(as_motCle));
     }
@@ -2003,12 +2021,12 @@ class Recipes {
         }
     }
 
-    /**
+    /********************************************
      * RECUPERE LE NOM DU TAG EN FONCTION DE SON TYPE
      * APPEL LA FONCTION POUR GENERER LE TAG
      * @param {*} as_type 
      * @param {*} ai_index 
-     */
+     *******************************************/
     getTag(as_type, ai_index){
         switch (as_type) {
             case "ING":
@@ -2029,12 +2047,12 @@ class Recipes {
        
     }
     
-    /**
+    /********************************************
      * GENERE LE BUTTON DU TAG SELECTIONNE
      * @param {*} as_type 
      * @param {*} as_nameTag 
      * @returns 
-     */
+     *******************************************/
     genTag(as_type, as_nameTag){
 
         let li_resFindIndexTag = this.findTagByIndex(as_nameTag);
@@ -2073,35 +2091,35 @@ class Recipes {
 
         tags.appendChild(tag);
 
-        this.allTags.push(as_nameTag);
+        this.allTagsChoose.push(as_nameTag);
 
         this.filterByTag();
     }
 
-    /**
+    /********************************************
      * RECHERCHE UN TAG DANS LE TABLEAU ET RENVOI SON INDEX
      * @param {*} as_tag 
      * @returns index
-     */
+     *******************************************/
     findTagByIndex(as_tag){
         const tagInArray = (element) => element == as_tag;
-        return this.allTags.findIndex(tagInArray);
+        return this.allTagsChoose.findIndex(tagInArray);
     }
 
-    /**
+    /********************************************
      * BOUCLE SUR LE RESULAT DES RECETTES
      * RECHERCHE SI TOUT LES TAGS TEMP SONT PRESENT POUR UNE RECETTE
      * AFFICHE LES RECETTES ASSOCIES
      * MET A JOUR LES FILTRES VIA LES RECETTES FILTREES
-     */
+     *******************************************/
     filterByTag(){
         let tempRecipesDisplay = new Array();
         this.tmpRecipesFilter.forEach((recipe, index) => {
 
-           let lengthTags = this.allTags.length;
+           let lengthTags = this.allTagsChoose.length;
            let lengthTagsFound = 0;
            
-           this.allTags.forEach(tag => {
+           this.allTagsChoose.forEach(tag => {
                 if(JSON.stringify(recipe).toLowerCase().indexOf(tag.toLowerCase()) !== -1){
                     lengthTagsFound++;
                 }
@@ -2122,14 +2140,14 @@ class Recipes {
 
     }
 
-    /**
+    /********************************************
      * RECHERCHE UN TAG DANS LE TABLEAU ET RENVOI SON INDEX
      * SUPPRIME LE TAG
      * MET A JOUR LES FILTRES VIA LES RECETTES FILTREES
-     */
+     *******************************************/
     deleteTag(ao_tag){
         let li_resFindIndexTag = this.findTagByIndex(ao_tag);
-        this.allTags.splice(li_resFindIndexTag, 1);
+        this.allTagsChoose.splice(li_resFindIndexTag, 1);
         ao_tag.remove();
         this.filterByTag();
     }
@@ -2218,11 +2236,11 @@ iconSearch.addEventListener('click', () => {
       displayDropdown(dropdownUstensiles,inputGroupUstensiles);  
   });
  
- /**
+ /********************************************
   * AFFICHE LE DROPDOWN INGREDIENTS APPAREILS USTENSILS
   * @param {*} ao_dropdown 
   * @param {*} ao_inputGroup 
-  */
+  *******************************************/
  function displayDropdown(ao_dropdown,ao_inputGroup){
      var largeur = window.innerWidth;
      if(ao_dropdown.style.display == "block"){
@@ -2234,14 +2252,14 @@ iconSearch.addEventListener('click', () => {
      }
  }
  
- /**
+ /***************************************************************
   * AFFICHE LES INGREDIENTS APPAREILS USTENSILS CORRESPONDANT AU RESULTAT
   * @param {*} as_motCle 
   * @param {*} ao_dropdown 
   * @param {*} ao_inputGroup 
   * @param {*} ao_selector 
   * 
-  */
+  **************************************************************/
  function displayItemDropdown(as_motCle ,ao_dropdown , ao_inputGroup, ao_selector){
      
      const tags = document.querySelectorAll(ao_selector);
