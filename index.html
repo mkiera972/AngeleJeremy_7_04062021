@@ -14,6 +14,7 @@
     </head>
 <body>
     <div class="container">
+<!-- HEADER -->
         <header class="header">
             <div class="header-logo">
                 <svg width="52" height="47" viewBox="0 0 52 47" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,17 +23,16 @@
                 <h1 class="header-logo-title">Les petits plats</h1>
             </div>
         </header>
+<!-- RECHERCHE -->
         <div class="form-group has-search">
             <span class="fa fa-search form-control-feedback" id="iconSearch"></span>
             <input id="search" type="text" class="form-control" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
-            <!--input id="search"  list="browsers" type="text" class="form-control" placeholder="Search"-->
         </div>
-        <datalist id="browsers">
-            <option value="tata"></option>
-        </datalist>
         <!-- ROWS https://grimonprezalexis.github.io/GrimonprezAlexis_7_180321/ -->
+<!-- TAGS -->
         <div class="tags" id="tags">
         </div>
+<!-- FILTRES -->
         <div class="filters">
           <div class="input-group input-group-lg input-group-ingredients">
             <input type="text" id="inputIngredients" class="form-control filters-group filters-group-ingredients" placeholder="Ingrédients" aria-label="Entrer un ingrédient">
@@ -73,8 +73,9 @@
             </div>
           </div>
         </div>    
-        <div class="cards" id="cards">
-        </div>
+<!-- LISTE DES RECETTES -->
+        <div class="cards" id="cards"></div>
+<!-- RESULTAT SI AUCUNE RECETTE TROUVEE -->
         <div class="resultsearch" id="resultsearch">
           <p class="resultsearch-infos">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc</p>
         </div>
