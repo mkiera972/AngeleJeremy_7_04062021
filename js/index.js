@@ -1739,30 +1739,44 @@ class Recipes {
         this.getData();
     }
 
-    /***********************************
-     * FILTRE LE TABLEAU DES RECETTES
-     * RENVOI UN TABLEAU FILTRE
+    
+    /**
+     * APPELE LA FONCTION POUR GENERER 
+     * LES RECETTES DANS LE HTML
      * @param {*} as_motCle 
-     * @returns 
-     ***********************************/
-    filterData(as_motCle){
-        let temp;
+     */
+     getData(){
+        this.genNodes();
+    }
 
-        if(as_motCle != ''){
-            temp = recipes.filter(function (d) {
-                return d.name.toLowerCase().indexOf(as_motCle) !== -1 
-                || d.description.toLowerCase().indexOf(as_motCle) !== -1
-                || d.ingredients.filter(i => i.ingredient.toLowerCase().includes(as_motCle)).length > 0;
-                
-            });
-            
-        }else{
-            temp = recipes.filter(function (d) {
-                return !as_motCle;
-            });
+    /*************************************
+     *RECUPERE LE TABLEAU FILTRE
+     *SUPPRIME LES ANCIENNES DONNEES DANS LE HTML
+     *CREER LES RECETTES DANS LE HTML
+     *APPEL LA FONCTION POUR ALIMENTER LES FILTRES
+     ************************************/
+     genNodes(ao_dataFilter ='' ){
+        this.tmpRecipesFilter = ao_dataFilter ? ao_dataFilter : recipes;
+
+        const allCards = document.querySelectorAll(".card");
+        const li_nb_cards = allCards.length;
+        if(li_nb_cards > 0){
+            allCards.forEach((card, key) => {
+             card.remove();
+          });
         }
 
-        return temp;
+        if(this.tmpRecipesFilter.length == 0){
+            document.getElementById("resultsearch").style.display = "block";
+            return false;
+        }else{
+            document.getElementById("resultsearch").style.display = "none";
+        }
+
+        for (const recipe of this.tmpRecipesFilter) {
+            this.genCards(recipe);
+        }
+        this.genFiltersByType(this.tmpRecipesFilter);
     }
 
     /*******************************************
@@ -1838,45 +1852,6 @@ class Recipes {
         card.appendChild(cardBody);
 
         cards.appendChild(card);
-    }
-
-    /*************************************
-     *RECUPERE LE TABLEAU FILTRE
-     *SUPPRIME LES ANCIENNES DONNEES DANS LE HTML
-     *CREER LES RECETTES DANS LE HTML
-     *APPEL LA FONCTION POUR ALIMENTER LES FILTRES
-     ************************************/
-    genNodes(ao_dataFilter){
-        this.tmpRecipesFilter = ao_dataFilter;
-
-        const allCards = document.querySelectorAll(".card");
-        const li_nb_cards = allCards.length;
-        if(li_nb_cards > 0){
-            allCards.forEach((card, key) => {
-            cards.removeChild(allCards[key]);
-          });
-        }
-
-        if(this.tmpRecipesFilter.length == 0){
-            document.getElementById("resultsearch").style.display = "block";
-            return false;
-        }else{
-            document.getElementById("resultsearch").style.display = "none";
-        }
-
-        for (const recipe of ao_dataFilter) {
-            this.genCards(recipe);
-        }
-
-        this.genFiltersByType(this.tmpRecipesFilter);
-    }
-
-    /**
-     * RECUPERE LES DONNEES
-     * @param {*} as_motCle 
-     */
-    getData(as_motCle = ''){
-        this.genNodes(this.filterData(as_motCle));
     }
 
     /*************************************
@@ -2021,6 +1996,31 @@ class Recipes {
         }
     }
 
+
+    /***********************************
+     * FILTRE L'AFFICHAGE DES RECETTES
+     * RENVOI DES RECETTES ET TAGS FITRES
+     * @param {*} as_motCle 
+     * @returns 
+     ***********************************/
+     filterData(as_motCle){
+        this.deleteAllTagchoose();
+        let temp;
+        const allCards = document.querySelectorAll(".card");
+        temp = recipes.filter( (d,index) => {
+            if(d.name.toLowerCase().indexOf(as_motCle) !== -1 
+            || d.description.toLowerCase().indexOf(as_motCle) !== -1
+            || d.ingredients.filter(i => i.ingredient.toLowerCase().includes(as_motCle)).length > 0){
+                allCards[index].style.display = "block";
+                return d;
+            }else{
+                allCards[index].style.display = "none";
+            }          
+        });
+        this.genFiltersByType(temp);
+    }
+
+
     /********************************************
      * RECUPERE LE NOM DU TAG EN FONCTION DE SON TYPE
      * APPEL LA FONCTION POUR GENERER LE TAG
@@ -2063,15 +2063,15 @@ class Recipes {
 
         switch (as_type) {
             case "ING":
-                classType = "btn btn-primary btn-primary-ing";
+                classType = "btn btn-primary btn-primary-ing tag";
                 break;
 
             case "APP":
-                classType = "btn btn-success btn-success-app";
+                classType = "btn btn-success btn-success-app tag";
                 break;
 
             case "UST":
-                classType = "btn btn-danger btn-danger-ust";
+                classType = "btn btn-danger btn-danger-ust tag";
                 break;
                 
             default:
@@ -2151,6 +2151,16 @@ class Recipes {
         ao_tag.remove();
         this.filterByTag();
     }
+
+    deleteAllTagchoose(){
+        const alltagschoose = document.querySelectorAll(".tag");
+        const li_nb_tagschoose = alltagschoose.length;
+        if(li_nb_tagschoose > 0){
+            alltagschoose.forEach((tag, key) => {
+                tag.remove();
+          });
+        }
+    }
 }
 
 /******************************************
@@ -2162,7 +2172,7 @@ const getRecipes = new Recipes();
 var inputSearch = document.getElementById("search");
 inputSearch.addEventListener('input', () => {
     if(inputSearch.value.trim().length > 2){
-        getRecipes.getData(inputSearch.value.toLowerCase());
+        getRecipes.filterData(inputSearch.value.toLowerCase());
     }else{
         getRecipes.getData('');
     }
