@@ -1766,13 +1766,6 @@ class Recipes {
           });
         }
 
-        if(this.tmpRecipesFilter.length == 0){
-            document.getElementById("resultsearch").style.display = "block";
-            return false;
-        }else{
-            document.getElementById("resultsearch").style.display = "none";
-        }
-
         for (const recipe of this.tmpRecipesFilter) {
             this.genCards(recipe);
         }
@@ -2017,7 +2010,14 @@ class Recipes {
                 allCards[index].style.display = "none";
             }          
         });
-        this.genFiltersByType(temp);
+
+        if(temp.length == 0){
+            document.getElementById("resultsearch").style.display = "block";
+        }else{
+            this.genFiltersByType(temp);
+            document.getElementById("resultsearch").style.display = "none";
+        }
+        
     }
 
 
@@ -2309,7 +2309,7 @@ function init_event_tags(){
      * INGREDIENTS
      **************************************/
     const setTagsIngredients = document.querySelectorAll(".dropdown-item-ingredient");
-    console.log(setTagsIngredients)
+    //console.log(setTagsIngredients)
     setTagsIngredients.forEach((tag,index) => tag.addEventListener('click', () => {
        getRecipes.getTag("ING", index);
     }));
