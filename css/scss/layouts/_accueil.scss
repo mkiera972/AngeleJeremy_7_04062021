@@ -1,4 +1,18 @@
 /** CSS PAGE ACCUEIL */
+.has-search {
+    display: flex;
+    align-items: center;
+    .form-control-feedback{
+        color: $color_black;
+    }
+
+}
+
+.inputSearch{
+    background-color: $background_color_card_body;
+    padding: 1rem .75rem;
+}
+
 .tags{
     margin : .5rem 0;
     flex-wrap: wrap;
@@ -188,7 +202,7 @@ div.dropdown-multicol{
         @media only screen and (min-width: 1101px){
             width: 31%;
         } 
-        /*height: 400px;*/
+        max-height: 420px;
         margin-bottom: 1rem;
         background-color: $background_color_card_body;
         border: none;
@@ -204,10 +218,22 @@ div.dropdown-multicol{
                 font-size: 18px;
                 margin: 0;
                 font-weight: 400;
+                width: 70%;
             }
 
             &-timer{
                 font-weight: 700;
+            }
+
+            &-infos{
+                display: flex;
+                align-items: center;
+                width: 30%;
+                justify-content: flex-end;
+
+                i{
+                    margin-right: .4rem;
+                }
             }
         }
 

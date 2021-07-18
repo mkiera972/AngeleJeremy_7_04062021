@@ -1783,7 +1783,7 @@ class Recipes {
         const cardImg = document.createElement("img");
         cardImg.classList.add("card-img-top");
         cardImg.setAttribute("src", "img/img.png");
-        cardImg.setAttribute("alt", "...");
+        cardImg.setAttribute("alt", ao_recipe.name);
 
         card.appendChild(cardImg);
 
@@ -1838,7 +1838,8 @@ class Recipes {
 
         const cardparag = document.createElement("p");
         cardparag.classList.add("card-body-desc");
-        cardparag.innerText = ao_recipe.description;
+        cardparag.setAttribute("title",ao_recipe.description);
+        cardparag.innerText = ao_recipe.description.length > 195 ? ao_recipe.description.substring(0,195) + "..." : ao_recipe.description;
         
         cardBody.appendChild(cardparag);
 
@@ -1859,6 +1860,15 @@ class Recipes {
         this.tmpIngredients = new Array();
         this.tmpAppareils = new Array();
         this.tmpUstencils = new Array();
+
+        //TRAITEMENT TERMINE SI AUCUN RESULTAT
+        if(as_recipes.length === 0){
+            this.genFilterIngredients();
+            this.genFilterAppareils();
+            this.genFilterUstencils();
+            init_event_tags();
+            return false;
+        }
 
         let tmpRecipes = as_recipes.length > 0 ? as_recipes : recipes;
 
@@ -1998,7 +2008,7 @@ class Recipes {
      ***********************************/
      filterData(as_motCle){
         this.deleteAllTagchoose();
-        let temp;
+        let temp = [];
         const allCards = document.querySelectorAll(".card");
         temp = recipes.filter( (d,index) => {
             if(d.name.toLowerCase().indexOf(as_motCle) !== -1 
@@ -2012,6 +2022,7 @@ class Recipes {
         });
 
         if(temp.length == 0){
+            this.genFiltersByType(temp);
             document.getElementById("resultsearch").style.display = "block";
         }else{
             this.genFiltersByType(temp);
@@ -2149,7 +2160,21 @@ class Recipes {
         let li_resFindIndexTag = this.findTagByIndex(ao_tag);
         this.allTagsChoose.splice(li_resFindIndexTag, 1);
         ao_tag.remove();
-        this.filterByTag();
+        /**
+         * SI UTILISATEUR COMMENCE SA RECHERCHE PAR UN MOT ET APPLIQUE UN TAG
+         * SI LE DERNIER TAG EST SUPPRIME ALORS ON AFFICHE LE RESULTAT DE LA RECHERCHE SANS TAG
+         * SINON TRIE AVEC LES TAGS RESTANT
+         */
+        if(this.allTagsChoose.length === 0){
+            let inputSearch = document.getElementById("search").value.trim();
+            if(inputSearch.length > 0){
+                this.filterData(inputSearch.toLowerCase());
+            }else{
+                this.filterByTag(); 
+            }
+        }else{
+            this.filterByTag(); 
+        }
     }
 
     deleteAllTagchoose(){
