@@ -30,7 +30,7 @@ Bootstrap) devra passer avec succès le validateur W3C.
 
 <b style="text-align : center">PARCOURS UTLISATEUR SOUS 3 FORMATS</b>
 <BR/><BR/>
-<b style="text-align : center">Scénario nominal</b>
+<b style="text-align : center">Scénario nominal</b><BR/>
 1. Le cas d’utilisation commence lorsque l’utilisateur entre au moins 3 caractères dans la
 barre de recherche principale.
 2. Le système recherche des recettes correspondant à l’entrée utilisateur dans : le titre de
@@ -49,13 +49,13 @@ seuls vont rester “noix de coco” et “lait de coco”.
 champs de recherche avancée
 10. L’utilisateur sélectionne une recette
 <BR/><BR/>
-<b style="text-align : center">Scénario alternatif A1</b>
+<b style="text-align : center">Scénario alternatif A1</b><BR/>
 A1. Aucune recette correspondante à la recherche
 L'enchaînement A1 commence au point 3 du scénario nominal
 3. L’interface affiche « Aucune recette ne correspond à votre critère… vous pouvez
 chercher « tarte aux pommes », « poisson », etc.
 <BR/><BR/>
-<b style="text-align : center">Scénario alternatif A3</b>
+<b style="text-align : center">Scénario alternatif A3</b><BR/>
 A3. L’utilisateur ajoute d’autres tags pour la recherche avancée
 L'enchaînement A3 commence au point 9 du scénario nominal. Cet enchaînement peut
 se répéter autant que nécessaire
